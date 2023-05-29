@@ -2,6 +2,15 @@ import sys
 import pandas as pd
 import math
 
+def	data_third_quartile(data) -> float:
+	return data[(data_count(data) / 4) * 3]
+
+def	data_second_quartile(data) -> float:
+	return data[data_count(data) / 2]
+
+def	data_first_quartile(data) -> float:
+	return data[data_count(data) / 4]
+
 def data_max(data) -> float:
     max = sys.float_info.min
     for val in data:

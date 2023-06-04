@@ -57,5 +57,9 @@ def data_count(data) -> int:
 
 if __name__ == "__main__":
 	data = pd.read_csv(sys.argv[1])
-	f1 = data['Arithmancy']
-	print(data_third_quartile(f1))
+	features = data.columns[6:]
+	d = {}
+	for f in features:
+		d[f] = [data_count(data[f]), data_mean(data[f]), data_standard_deviation(data[f]), data_min(data[f]), data_first_quartile(data[f]), data_median(data[f]), data_third_quartile(data[f]), data_max(data[f])]
+	df = pd.DataFrame(data=d, index=['Count', 'Mean', 'Std', 'Min', '25%', '50%', '75%', 'Max'])
+	print(df)

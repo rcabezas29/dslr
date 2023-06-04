@@ -58,8 +58,9 @@ def data_count(data) -> int:
 if __name__ == "__main__":
 	data = pd.read_csv(sys.argv[1])
 	features = data.columns[6:]
+	data_functions = [data_count, data_mean, data_standard_deviation, data_min, data_first_quartile, data_median, data_third_quartile, data_max]
 	d = {}
 	for f in features:
-		d[f] = [data_count(data[f]), data_mean(data[f]), data_standard_deviation(data[f]), data_min(data[f]), data_first_quartile(data[f]), data_median(data[f]), data_third_quartile(data[f]), data_max(data[f])]
+		d[f] = list(map(lambda func: func(data[f]), data_functions))
 	df = pd.DataFrame(data=d, index=['Count', 'Mean', 'Std', 'Min', '25%', '50%', '75%', 'Max'])
 	print(df)

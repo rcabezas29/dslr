@@ -17,7 +17,7 @@ houses_colors = {
 }
 
 if __name__ == "__main__":
-    data = pd.read_csv(sys.argv[1]).fillna(0)
+    data = pd.read_csv(sys.argv[1])
     features = data.columns[6:]
 
     for f in features:

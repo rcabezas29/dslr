@@ -10,10 +10,10 @@ houses = {
 }
 
 houses_colors = {
-    'Slytherin': 'green',
-    'Ravenclaw': 'blue',
-    'Hufflepuff': 'yellow',
-    'Gryffindor': 'red',
+    'Slytherin': '#366447',
+    'Ravenclaw': '#3c4e91',
+    'Hufflepuff': '#efbc2f',
+    'Gryffindor': '#a6332e',
 }
 
 if __name__ == "__main__":
@@ -25,6 +25,7 @@ if __name__ == "__main__":
 
         for house in houses:
             house_data = data.loc[data['Hogwarts House'] == house]
-            axs.hist(house_data[f], alpha=0.25, bins=15, color=houses_colors[house])
+            axs.hist(house_data[f], alpha=0.5, bins=15, color=houses_colors[house], label=house)
         
+        plt.legend(loc='upper right')
         plt.show()

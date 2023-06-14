@@ -10,8 +10,11 @@ houses_colors = {
     'Gryffindor': '#a6332e',
 }
 
-if __name__ == "__main__":
-    data = pd.read_csv(sys.argv[1])
+data = pd.read_csv(sys.argv[1])
 
-    sns.pairplot(data[6:], hue='Hogwarts House', diag_kind="hist", palette=houses_colors)
-    plt.show()
+features = data.columns[6:]
+
+features = ['Hogwarts House'] + features.tolist()
+
+sns.pairplot(data[features], hue='Hogwarts House', diag_kind="hist", palette=houses_colors)
+plt.show()

@@ -1,5 +1,5 @@
 import sys
-import pandas as pd
+from pandas import read_csv
 import matplotlib.pyplot as plt
 
 houses = [
@@ -17,7 +17,7 @@ houses_colors = {
 }
 
 if __name__ == "__main__":
-    data = pd.read_csv(sys.argv[1])
+    data = read_csv(sys.argv[1])
 
     for house in houses:
         house_data = data.loc[data['Hogwarts House'] == house]

@@ -1,5 +1,5 @@
 import sys
-import pandas as pd
+from pandas import read_csv, DataFrame
 import math
 import numpy as np
 
@@ -56,11 +56,11 @@ def data_count(data) -> int:
 	return i
 
 if __name__ == "__main__":
-	data = pd.read_csv(sys.argv[1]).fillna(0)
+	data = read_csv(sys.argv[1]).fillna(0)
 	features = data.columns[6:]
 	data_functions = [data_count, data_mean, data_standard_deviation, data_min, data_first_quartile, data_median, data_third_quartile, data_max]
 	d = {}
 	for f in features:
 		d[f] = list(map(lambda func: func(data[f]), data_functions))
-	df = pd.DataFrame(data=d, index=['Count', 'Mean', 'Std', 'Min', '25%', '50%', '75%', 'Max'])
+	df = DataFrame(data=d, index=['Count', 'Mean', 'Std', 'Min', '25%', '50%', '75%', 'Max'])
 	print(df)

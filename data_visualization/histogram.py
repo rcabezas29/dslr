@@ -1,5 +1,5 @@
 import sys
-import pandas as pd
+from pandas import read_csv
 import matplotlib.pyplot as plt
 
 houses = {
@@ -17,7 +17,7 @@ houses_colors = {
 }
 
 if __name__ == "__main__":
-    data = pd.read_csv(sys.argv[1])
+    data = read_csv(sys.argv[1])
     features = data.columns[6:]
 
     for f in features:

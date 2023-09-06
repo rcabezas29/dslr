@@ -1,5 +1,5 @@
 import sys
-import pandas as pd
+from pandas import read_csv
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -10,7 +10,7 @@ houses_colors = {
     'Gryffindor': '#a6332e',
 }
 
-data = pd.read_csv(sys.argv[1])
+data = read_csv(sys.argv[1])
 
 features = data.columns[6:]
 

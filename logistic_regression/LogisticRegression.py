@@ -8,6 +8,7 @@ class LogisticRegression():
 
 	def	predict_(self, x):
 		x_ = np.hstack((np.ones((x.shape[0], 1)), x))
+		print(f"x: {-x_}\ntheta: {self.theta}")
 		return 1 / (1 + np.exp(-x_ @ self.theta))
 
 	def	loss_elem_(self, y, y_hat):

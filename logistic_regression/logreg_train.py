@@ -17,6 +17,9 @@ def	howarts_house_format(house: str, df: pd.DataFrame) -> np.array:
 def	usage():
 	print("  Usage:\npython3 logreg_train.py [dataset]")
 
+def	clean_data(df: pd.DataFrame) -> pd.DataFrame:
+	return df[['Astronomy','Herbology','Defense Against the Dark Arts','Divination','Muggle Studies','Ancient Runes','Transfiguration','Charms','Flying']]
+
 if __name__ == "__main__":
 	try:
 		df = pd.read_csv(sys.argv[1], index_col=0)
@@ -25,18 +28,17 @@ if __name__ == "__main__":
 		exit(1)
 
 	features = df.columns[5:]
-	x = df[features].to_numpy()
+	x = clean_data(df[features].fillna(0)).to_numpy()
 
 	for house in houses:
 		y = howarts_house_format(house, df)
 		thetas = np.zeros((x.shape[1] + 1, 1))
-		lr = logReg(thetas)
+		lr = logReg(thetas, max_iter=10000)
 		lr.fit_(x, y)
 
-	print(lr.theta)
+	# print(lr.theta)
 
-	# with open('.weights', 'w') as f:
-	# 	f.write(f'weights')
-	# 	f.close()
-	
-
+	with open('.weights', 'w') as f:
+		for idx, val in enumerate(lr.theta[:,0]):
+			f.write(f't{idx},{val}\n')
+		f.close()

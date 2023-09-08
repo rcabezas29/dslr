@@ -33,10 +33,8 @@ if __name__ == "__main__":
 	for house in houses:
 		y = howarts_house_format(house, df)
 		thetas = np.zeros((x.shape[1] + 1, 1))
-		lr = logReg(thetas, max_iter=10000)
+		lr = logReg(thetas, max_iter=3000)
 		lr.fit_(x, y)
-
-	# print(lr.theta)
 
 	with open('.weights', 'w') as f:
 		for idx, val in enumerate(lr.theta[:,0]):

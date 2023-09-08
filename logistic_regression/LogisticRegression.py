@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 class LogisticRegression():
 	def __init__(self, theta, alpha=0.1, max_iter=1000):

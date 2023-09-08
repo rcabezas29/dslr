@@ -30,13 +30,12 @@ if __name__ == "__main__":
 	features = df.columns[5:]
 	x = clean_data(df[features].fillna(0)).to_numpy()
 
+	res = pd.DataFrame()
 	for house in houses:
 		y = howarts_house_format(house, df)
 		thetas = np.zeros((x.shape[1] + 1, 1))
-		lr = logReg(thetas, max_iter=3000)
+		lr = logReg(thetas, max_iter=1000)
 		lr.fit_(x, y)
-
-	with open('.weights', 'w') as f:
-		for idx, val in enumerate(lr.theta[:,0]):
-			f.write(f't{idx},{val}\n')
-		f.close()
+		res[house] = [i[0] for i in lr.theta]
+	print(res)
+	res.to_csv('.weights.csv')

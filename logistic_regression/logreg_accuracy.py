@@ -1,12 +1,14 @@
-import sys
 import pandas as pd
+import sys
+import numpy as np
+from tqdm import tqdm
 from LogisticRegression import LogisticRegression as logReg
 
 houses = [
-	'Slytherin',
-	'Ravenclaw',
-	'Hufflepuff',
-	'Gryffindor'
+    'Slytherin',
+    'Ravenclaw',
+    'Hufflepuff',
+    'Gryffindor'
 ]
 
 def	usage():
@@ -34,6 +36,14 @@ def	main():
 		results[h] = [i * 100 for i in lr.predict(x)]
 
 	print(results)
+
+	house_prediction = []
+	for _, row in results.iterrows():
+		house_prediction.append(row.idxmax())
+
+	mask = df['Hogwarts House'] == house_prediction
+
+	print(f"{100 - (mask.value_counts()[1] / mask.value_counts()[0]) * 100}%")
 
 if __name__ == "__main__":
     main()

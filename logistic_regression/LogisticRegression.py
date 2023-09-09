@@ -1,7 +1,7 @@
 import numpy as np
 
 class LogisticRegression():
-	def __init__(self, theta, alpha=0.1, max_iter=1000):
+	def __init__(self, theta, alpha=0.0005, max_iter=1000):
 		self.alpha = alpha
 		self.max_iter = max_iter
 		self.theta = theta
@@ -34,7 +34,4 @@ class LogisticRegression():
 		for _ in range(self.max_iter):
 			print(self.loss_(x, y))
 			self.theta -= (self.alpha * self.gradient_(x, y))
-			loss = self.loss_(x, y)
-			if loss < 0.01:
-				break
 		return self.theta

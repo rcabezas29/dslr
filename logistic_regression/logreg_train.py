@@ -34,7 +34,7 @@ if __name__ == "__main__":
 	for house in houses:
 		y = howarts_house_format(house, df)
 		thetas = np.zeros((x.shape[1] + 1, 1))
-		lr = logReg(thetas, max_iter=1000)
+		lr = logReg(thetas, max_iter=50000)
 		lr.fit_(x, y)
 		res[house] = [i[0] for i in lr.theta]
 	print(res)

@@ -1,6 +1,7 @@
 import sys
 import pandas as pd
 from LogisticRegression import LogisticRegression as logReg
+import numpy as np
 
 houses = [
     'Slytherin',
@@ -26,9 +27,18 @@ def	main():
 	x = clean_data(df[features].fillna(0)).to_numpy()
 	houses_thetas = pd.read_csv(".weights.csv")
 
+	results = pd.DataFrame()
+
 	for h in houses:
 		lr = logReg(houses_thetas[h].to_numpy())
-		print(lr.predict_(x))
+		x = lr.normalize_data(x)
+		results[h] = [i * 100 for i in lr.predict_(x)]
+		# results.append(lr.predict_(x) * 100)
+
+	print(results)
+
+	# for i, x in enumerate(results):
+	# 	print()
 
 if __name__ == "__main__":
     main()

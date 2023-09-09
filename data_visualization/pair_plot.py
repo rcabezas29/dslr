@@ -17,4 +17,5 @@ features = data.columns[6:]
 features = ['Hogwarts House'] + features.tolist()
 
 sns.pairplot(data[features], hue='Hogwarts House', diag_kind="hist", palette=houses_colors)
+plt.savefig('my_plot.png')
 plt.show()

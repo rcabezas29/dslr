@@ -101,6 +101,9 @@ This program takes the `thetas` to do the prediction over the dataset where the 
 ## Resources
 
 https://en.wikipedia.org/wiki/Logistic_regression
+
 https://christophm.github.io/interpretable-ml-book/logistic.html
+
 https://www.geeksforgeeks.org/understanding-logistic-regression/
+
 https://www.analyticsvidhya.com/blog/2020/04/feature-scaling-machine-learning-normalization-standardization/

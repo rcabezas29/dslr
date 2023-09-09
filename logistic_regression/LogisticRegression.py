@@ -2,7 +2,7 @@ import numpy as np
 from tqdm import tqdm
 
 class LogisticRegression():
-	def __init__(self, theta, alpha=0.0005, max_iter=50000):
+	def __init__(self, theta, alpha=0.005, max_iter=4000):
 		self.alpha = alpha
 		self.max_iter = max_iter
 		self.theta = theta
@@ -37,4 +37,6 @@ class LogisticRegression():
 		x = self.normalize_data(x)
 		for _ in tqdm(range(self.max_iter)):
 			self.theta -= (self.alpha * self.gradient(x, y))
+			if self.loss(x, y) < 0.01:
+				break
 		return self.theta

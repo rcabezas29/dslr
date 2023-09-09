@@ -35,8 +35,6 @@ def	main():
 		x = lr.normalize_data(x)
 		results[h] = [i * 100 for i in lr.predict(x)]
 
-	print(results)
-
 	house_prediction = []
 	for _, row in results.iterrows():
 		house_prediction.append(row.idxmax())

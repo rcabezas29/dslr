@@ -90,13 +90,31 @@ This is the function that evaluates the mean error at predicting the values.
 
 The [logreg_train](./logistic_regression/logreg_train.py) generates a `.weights.csv` file where `thetas` are stored. These are the weights that multiplies every feature value to know how much each value is taken into account.
 
+#### Usage
+
+```bash
+python3 logistic_regression/logreg_train.py datasets/dataset_train.csv
+```
+
 ### Accuracy
 
 The [logreg_accuracy](./logistic_regression/logreg_accuracy.py) takes the `thetas` and makes its prediction over the data where the real results are already known in order to know the accuracy the algorithm has and shows it as a percentage of sucess.
 
+#### Usage
+
+```bash
+python3 logistic_regression/logreg_accuracy.py datasets/dataset_train.csv
+```
+
 ### Prediction
 
-This program takes the `thetas` to do the prediction over the dataset where the students does not have an assigned house. When the prediction is realized over all the stdudents, the program generates a `houses.csv` where all the predicted houses are stored.
+The [logreg_predict](./logistic_regression/logreg_predict.py) takes the `thetas` to do the prediction over the dataset where the students does not have an assigned house. When the prediction is realized over all the stdudents, the program generates a `houses.csv` where all the predicted houses are stored.
+
+#### Usage
+
+```bash
+python3 logistic_regression/logreg_predict.py datasets/dataset_test.csv
+```
 
 ## Resources
 

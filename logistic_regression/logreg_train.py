@@ -3,26 +3,11 @@ import sys
 from LogisticRegression import LogisticRegression as logReg
 import numpy as np
 from tqdm import tqdm
-
-houses = [
-    'Slytherin',
-    'Ravenclaw',
-    'Hufflepuff',
-    'Gryffindor'
-]
+from utils import *
 
 def	hogwarts_house_format(house: str, df: pd.DataFrame) -> np.array:
 	mask = df['Hogwarts House'] == house
 	return mask.astype(int).values.reshape(-1, 1)
-
-def	usage():
-	print("  Usage:\npython3 logreg_train.py [dataset]")
-	exit(1)
-
-def	clean_data(df: pd.DataFrame) -> np.ndarray:
-	features = df.columns[5:]
-	df = df[features].fillna(0)
-	return df[['Astronomy','Herbology','Defense Against the Dark Arts','Divination','Muggle Studies','Ancient Runes','Transfiguration','Charms','Flying']].to_numpy()
 
 if __name__ == "__main__":
 	try:

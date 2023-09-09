@@ -2,19 +2,12 @@ import sys
 import pandas as pd
 from LogisticRegression import LogisticRegression as logReg
 import csv
-
-houses = [
-	'Slytherin',
-	'Ravenclaw',
-	'Hufflepuff',
-	'Gryffindor'
-]
-
-def	usage():
-	print("  Usage:\npython3 logreg_predict.py [dataset].csv")
+from utils import *
 
 def	clean_data(df: pd.DataFrame) -> pd.DataFrame:
-	return df[['Astronomy','Herbology','Defense Against the Dark Arts','Divination','Muggle Studies','Ancient Runes','Transfiguration','Charms','Flying']]
+	return df[['Astronomy','Herbology','Defense Against the Dark Arts', \
+			'Divination','Muggle Studies','Ancient Runes','Transfiguration', \
+			'Charms','Flying']]
 
 def	write_prediction_file(house_prediction):
 	with open('houses.csv', mode='w', newline='') as file:
@@ -41,12 +34,9 @@ def	main():
 		df = pd.read_csv(sys.argv[1], index_col=0)
 	except:
 		usage()
-		exit(1)
 
-	features = df.columns[5:]
-	x = clean_data(df[features].fillna(0)).to_numpy()
+	x = clean_data(df)
 	houses_thetas = pd.read_csv(".weights.csv")
-
 	house_prediction = execute_prediction(x, houses_thetas)
 
 	write_prediction_file(house_prediction)

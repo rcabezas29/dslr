@@ -1,31 +1,15 @@
 import pandas as pd
 import sys
-import numpy as np
-from tqdm import tqdm
 from LogisticRegression import LogisticRegression as logReg
-
-houses = [
-    'Slytherin',
-    'Ravenclaw',
-    'Hufflepuff',
-    'Gryffindor'
-]
-
-def	usage():
-	print("  Usage:\npython3 logreg_predict.py [dataset].csv")
-
-def	clean_data(df: pd.DataFrame) -> pd.DataFrame:
-	return df[['Astronomy','Herbology','Defense Against the Dark Arts','Divination','Muggle Studies','Ancient Runes','Transfiguration','Charms','Flying']]
+from utils import *
 
 def	main():
 	try:
 		df = pd.read_csv(sys.argv[1], index_col=0)
 	except:
 		usage()
-		exit(1)
 
-	features = df.columns[5:]
-	x = clean_data(df[features].fillna(0)).to_numpy()
+	x = clean_data(df)
 	houses_thetas = pd.read_csv(".weights.csv")
 
 	results = pd.DataFrame()

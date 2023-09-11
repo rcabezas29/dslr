@@ -4,11 +4,6 @@ from LogisticRegression import LogisticRegression as logReg
 import csv
 from utils import *
 
-def	clean_data(df: pd.DataFrame) -> pd.DataFrame:
-	return df[['Astronomy','Herbology','Defense Against the Dark Arts', \
-			'Divination','Muggle Studies','Ancient Runes','Transfiguration', \
-			'Charms','Flying']]
-
 def	write_prediction_file(house_prediction):
 	with open('houses.csv', mode='w', newline='') as file:
 		writer = csv.writer(file)

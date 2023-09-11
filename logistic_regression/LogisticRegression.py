@@ -2,10 +2,12 @@ import numpy as np
 from tqdm import tqdm
 
 class LogisticRegression():
-	def __init__(self, theta: np.ndarray, alpha=0.005, max_iter=4000):
+	def __init__(self, theta: np.ndarray, alpha=0.005, max_iter=4000, stochastic=False, batch_size=32):
 		self.alpha = alpha
 		self.max_iter = max_iter
 		self.theta = theta
+		self.stochastic = stochastic
+		self.batch_size = batch_size
 		self.eps = 1e-15
 
 	def	sigmoid(self, x: np.ndarray):
@@ -33,30 +35,25 @@ class LogisticRegression():
 		norm = (x - mean) / std_dev
 		return norm
 
-	def	stochastic_fit(self, x: np.ndarray, y: np.ndarray):
-		x = self.normalize_data(x)
-		m, d = x.shape
-		self.theta = np.random.randn(d + 1).reshape(-1, 1)
-
-		for i in range(self.max_iter):
-			indices = np.random.permutation(m)
-			x = x[indices]
-			y = y[indices]
-
-			for i in range(0, m, 32):
-				X_batch = x[i:i+32]
-				y_batch = y[i:i+32]
-				grad = self.gradient(X_batch, y_batch)
-				self.theta -= self.alpha * grad
-
-			loss = self.loss(x, y)
-			if loss < 0.01:
-				break
-
 	def	fit(self, x: np.ndarray, y: np.ndarray):
 		x = self.normalize_data(x)
-		for _ in tqdm(range(self.max_iter)):
-			self.theta -= (self.alpha * self.gradient(x, y))
+		m, _ = x.shape
+		
+		for i in tqdm(range(self.max_iter)):
+			if (self.stochastic == True):
+				indices = np.random.permutation(m)
+				x = x[indices]
+				y = y[indices]
+
+				for i in range(0, m, self.batch_size):
+					x_batch = x[i:i+self.batch_size]
+					y_batch = y[i:i+self.batch_size]
+
+					self.theta -= self.alpha * self.gradient(x_batch, y_batch)
+
+			else:
+				self.theta -= (self.alpha * self.gradient(x, y))
+			
 			if self.loss(x, y) < 0.01:
 				break
 		return self.theta

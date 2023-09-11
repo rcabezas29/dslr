@@ -90,6 +90,16 @@ This is the function that evaluates the mean error at predicting the values.
 
 The [logreg_train](./logistic_regression/logreg_train.py) generates a `.weights.csv` file where `thetas` are stored. These are the weights that multiplies every feature value to know how much each value is taken into account.
 
+#### Stochastic GD
+
+There is a feature in order to use a *stochastic gradient descent* algorithm. You can set the class init value of stochastic to true like this:
+
+```python
+lr = logReg(thetas, stochastic=True, batch_size=32)
+```
+
+This will make the class to use the stochastic function at fit. This function consists on using "batches" of data to evaluate the fit, so this will make it more efficient.
+
 #### Usage
 
 ```bash

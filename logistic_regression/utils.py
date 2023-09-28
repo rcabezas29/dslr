@@ -16,4 +16,4 @@ def	usage():
 def	clean_data(df: pd.DataFrame) -> np.ndarray:
 	features = df.columns[5:]
 	df = df[features].fillna(0)
-	return df[['Astronomy','Herbology','Defense Against the Dark Arts','Divination','Muggle Studies','Ancient Runes','Transfiguration','Charms','Flying']].to_numpy()
+	return df[['Herbology','Defense Against the Dark Arts','Divination','Muggle Studies','Ancient Runes','Transfiguration','Charms','Flying']].to_numpy()

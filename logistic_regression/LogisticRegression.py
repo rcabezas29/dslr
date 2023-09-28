@@ -2,7 +2,7 @@ import numpy as np
 from tqdm import tqdm
 
 class LogisticRegression():
-	def __init__(self, theta: np.ndarray, alpha=0.005, max_iter=4000, stochastic=False, batch_size=32):
+	def __init__(self, theta: np.ndarray, alpha=0.005, max_iter=4500, stochastic=False, batch_size=32):
 		self.alpha = alpha
 		self.max_iter = max_iter
 		self.theta = theta
